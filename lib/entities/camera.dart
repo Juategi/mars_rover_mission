@@ -45,10 +45,10 @@ class Camera {
         _moveRoverForward();
         break;
       case "L":
-        //_moveRoverLeft();
+        _moveRoverLeft();
         break;
       case "R":
-        //_moveRoverRight();
+        _moveRoverRight();
         break;
       default:
         break;
@@ -70,6 +70,56 @@ class Camera {
         break;
       case Direction.west:
         rover.position = (rover.position.$1 - 1, rover.position.$2);
+        break;
+      default:
+        break;
+    }
+    planet.setRoverPosition(rover.position, rover.direction);
+  }
+
+  void _moveRoverLeft() {
+    planet.removeRoverPosition(rover.position);
+    switch (rover.direction) {
+      case Direction.north:
+        rover.direction = Direction.west;
+        rover.position = (rover.position.$1 - 1, rover.position.$2);
+        break;
+      case Direction.east:
+        rover.direction = Direction.north;
+        rover.position = (rover.position.$1, rover.position.$2 - 1);
+        break;
+      case Direction.south:
+        rover.direction = Direction.east;
+        rover.position = (rover.position.$1 + 1, rover.position.$2);
+        break;
+      case Direction.west:
+        rover.direction = Direction.south;
+        rover.position = (rover.position.$1, rover.position.$2 + 1);
+        break;
+      default:
+        break;
+    }
+    planet.setRoverPosition(rover.position, rover.direction);
+  }
+
+  void _moveRoverRight() {
+    planet.removeRoverPosition(rover.position);
+    switch (rover.direction) {
+      case Direction.north:
+        rover.direction = Direction.east;
+        rover.position = (rover.position.$1 + 1, rover.position.$2);
+        break;
+      case Direction.east:
+        rover.direction = Direction.south;
+        rover.position = (rover.position.$1, rover.position.$2 + 1);
+        break;
+      case Direction.south:
+        rover.direction = Direction.west;
+        rover.position = (rover.position.$1 - 1, rover.position.$2);
+        break;
+      case Direction.west:
+        rover.direction = Direction.north;
+        rover.position = (rover.position.$1, rover.position.$2 - 1);
         break;
       default:
         break;

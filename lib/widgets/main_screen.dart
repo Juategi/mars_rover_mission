@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RoverBloc, RoverState>(builder: (context, state) {
-      if (state.status == RoverStatus.moving) {
+      if (state.status == RoverStatus.moving && state.movements.isNotEmpty) {
         camera.moveRover(state.movements[0]);
       }
       return Scaffold(
