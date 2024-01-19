@@ -1,5 +1,5 @@
 class Config {
   static const int planetSize = 200;
-  static const int obstacles = 1000;
-  static const int cameraSize = 20;
+  static const int obstacles = 2000;
+  static const int cameraSize = 10;
 }
