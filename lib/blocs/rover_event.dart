@@ -14,6 +14,8 @@ final class RoverAddedMovement extends RoverEvent {
   List<Object> get props => [movement];
 }
 
+final class RoverStartsMoving extends RoverEvent {}
+
 final class RoverMoved extends RoverEvent {}
 
 final class RoverStopped extends RoverEvent {}
