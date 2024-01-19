@@ -40,7 +40,7 @@ class MovementControls extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   onPressed: () {
-                    context.read<RoverBloc>().add(RoverStopped());
+                    context.read<RoverBloc>().add(RoverMoved());
                   },
                 ),
               ),

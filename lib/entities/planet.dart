@@ -41,6 +41,10 @@ class Planet {
         break;
     }
   }
+
+  void removeRoverPosition((int, int) position) {
+    map[position.$1][position.$2] = PlanetElement.ground;
+  }
 }
 
 enum PlanetElement {

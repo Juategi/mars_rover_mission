@@ -29,38 +29,39 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                PlanetGrid(
-                  planet: planet,
-                  rover: rover,
-                  camera: camera,
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 50),
-                    child: BlocBuilder<RoverBloc, RoverState>(
-                      builder: (context, state) {
-                        return Text(
-                          state.movements,
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        );
-                      },
+    return BlocBuilder<RoverBloc, RoverState>(builder: (context, state) {
+      if (state.status == RoverStatus.moving) {
+        camera.moveRover(state.movements[0]);
+      }
+      return Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  PlanetGrid(
+                    planet: planet,
+                    rover: rover,
+                    camera: camera,
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 50),
+                      child: Text(
+                        state.movements,
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const MovementControls(),
-        ],
-      ),
-    );
+            const MovementControls(),
+          ],
+        ),
+      );
+    });
   }
 }

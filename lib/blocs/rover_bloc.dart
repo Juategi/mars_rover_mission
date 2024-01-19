@@ -21,10 +21,17 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
   }
 
   void _onRoverMoved(RoverMoved event, Emitter<RoverState> emit) {
-    emit(state.copyWith(
-      status: RoverStatus.moving,
-      movements: state.movements.substring(1),
-    ));
+    if (state.movements.isNotEmpty) {
+      emit(state.copyWith(
+        status: RoverStatus.moving,
+        movements: state.movements.substring(1),
+      ));
+    } else {
+      emit(state.copyWith(
+        status: RoverStatus.stopped,
+        movements: "",
+      ));
+    }
   }
 
   void _onRoverStopped(RoverStopped event, Emitter<RoverState> emit) {

@@ -38,4 +38,42 @@ class Camera {
       cameraY = 0;
     }
   }
+
+  void moveRover(String movement) {
+    switch (movement) {
+      case "F":
+        _moveRoverForward();
+        break;
+      case "L":
+        //_moveRoverLeft();
+        break;
+      case "R":
+        //_moveRoverRight();
+        break;
+      default:
+        break;
+    }
+    _loadCameraMapFromRoverPosition();
+  }
+
+  void _moveRoverForward() {
+    planet.removeRoverPosition(rover.position);
+    switch (rover.direction) {
+      case Direction.north:
+        rover.position = (rover.position.$1, rover.position.$2 - 1);
+        break;
+      case Direction.east:
+        rover.position = (rover.position.$1 + 1, rover.position.$2);
+        break;
+      case Direction.south:
+        rover.position = (rover.position.$1, rover.position.$2 + 1);
+        break;
+      case Direction.west:
+        rover.position = (rover.position.$1 - 1, rover.position.$2);
+        break;
+      default:
+        break;
+    }
+    planet.setRoverPosition(rover.position, rover.direction);
+  }
 }
