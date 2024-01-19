@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mars_rover_mission/blocs/text_box_cubit.dart';
+import 'package:mars_rover_mission/blocs/rover_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MovementControls extends StatelessWidget {
@@ -16,7 +16,7 @@ class MovementControls extends StatelessWidget {
             iconSize: 60,
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              context.read<TextBoxCubit>().addMovement("L");
+              context.read<RoverBloc>().add(RoverAddedMovement("L"));
             },
           ),
           const SizedBox(width: 20),
@@ -28,7 +28,7 @@ class MovementControls extends StatelessWidget {
                   iconSize: 60,
                   icon: const Icon(Icons.arrow_upward),
                   onPressed: () {
-                    context.read<TextBoxCubit>().addMovement("F");
+                    context.read<RoverBloc>().add(RoverAddedMovement("F"));
                   },
                 ),
               ),
@@ -40,7 +40,7 @@ class MovementControls extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   onPressed: () {
-                    context.read<TextBoxCubit>().removeMovement();
+                    context.read<RoverBloc>().add(RoverStopped());
                   },
                 ),
               ),
@@ -51,7 +51,7 @@ class MovementControls extends StatelessWidget {
             iconSize: 60,
             icon: const Icon(Icons.arrow_forward),
             onPressed: () {
-              context.read<TextBoxCubit>().addMovement("R");
+              context.read<RoverBloc>().add(RoverAddedMovement("R"));
             },
           ),
         ],

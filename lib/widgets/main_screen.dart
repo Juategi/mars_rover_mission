@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mars_rover_mission/blocs/text_box_cubit.dart';
+import 'package:mars_rover_mission/blocs/rover_bloc.dart';
 import 'package:mars_rover_mission/entities/camera.dart';
 import 'package:mars_rover_mission/entities/planet.dart';
 import 'package:mars_rover_mission/entities/rover.dart';
@@ -45,10 +45,10 @@ class _MainScreenState extends State<MainScreen> {
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 50),
-                    child: BlocBuilder<TextBoxCubit, String>(
-                      builder: (context, text) {
+                    child: BlocBuilder<RoverBloc, RoverState>(
+                      builder: (context, state) {
                         return Text(
-                          text,
+                          state.movements,
                           style: Theme.of(context).textTheme.headlineSmall,
                         );
                       },
