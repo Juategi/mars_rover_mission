@@ -44,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 40),
+                    padding: const EdgeInsets.only(bottom: 50),
                     child: BlocBuilder<TextBoxCubit, String>(
                       builder: (context, text) {
                         return Text(
@@ -59,13 +59,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           const MovementControls(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Rover position: ${rover.position}',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-          ),
         ],
       ),
     );

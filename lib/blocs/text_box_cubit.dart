@@ -9,4 +9,8 @@ class TextBoxCubit extends Cubit<String> {
       emit(state + text);
     }
   }
+
+  void removeMovement() {
+    emit("");
+  }
 }
