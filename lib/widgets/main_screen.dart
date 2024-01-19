@@ -27,12 +27,24 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: PlanetGrid(
-          planet: planet,
-          rover: rover,
-          camera: camera,
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: PlanetGrid(
+              planet: planet,
+              rover: rover,
+              camera: camera,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Rover position: ${rover.position}',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+        ],
       ),
     );
   }

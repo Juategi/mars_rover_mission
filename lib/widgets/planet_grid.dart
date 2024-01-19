@@ -3,9 +3,9 @@ import 'package:mars_rover_mission/config/config.dart';
 import 'package:mars_rover_mission/entities/camera.dart';
 import 'package:mars_rover_mission/entities/planet.dart';
 import 'package:mars_rover_mission/entities/rover.dart';
-import 'package:mars_rover_mission/widgets/ground_tile.dart';
-import 'package:mars_rover_mission/widgets/obstacle_tile.dart';
-import 'package:mars_rover_mission/widgets/rover_tile.dart';
+import 'package:mars_rover_mission/widgets/tiles/ground_tile.dart';
+import 'package:mars_rover_mission/widgets/tiles/obstacle_tile.dart';
+import 'package:mars_rover_mission/widgets/tiles/rover_tile.dart';
 
 class PlanetGrid extends StatelessWidget {
   const PlanetGrid({
