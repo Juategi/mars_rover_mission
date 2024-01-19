@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mars_rover_mission/blocs/text_box_cubit.dart';
 import 'package:mars_rover_mission/entities/camera.dart';
 import 'package:mars_rover_mission/entities/planet.dart';
 import 'package:mars_rover_mission/entities/rover.dart';
+import 'package:mars_rover_mission/widgets/movement_controls.dart';
 import 'package:mars_rover_mission/widgets/planet_grid.dart';
 
 class MainScreen extends StatefulWidget {
@@ -31,17 +34,36 @@ class _MainScreenState extends State<MainScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: PlanetGrid(
-              planet: planet,
-              rover: rover,
-              camera: camera,
+            child: Stack(
+              children: [
+                PlanetGrid(
+                  planet: planet,
+                  rover: rover,
+                  camera: camera,
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: BlocBuilder<TextBoxCubit, String>(
+                      builder: (context, text) {
+                        return Text(
+                          text,
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
+          const MovementControls(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Rover position: ${rover.position}',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
         ],

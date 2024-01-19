@@ -20,45 +20,48 @@ class PlanetGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: Config.cameraSize * Config.cameraSize,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: Config.cameraSize,
-      ),
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (BuildContext context, int index) {
-        int x = index ~/ Config.cameraSize;
-        int y = index % Config.cameraSize;
-        if (camera.cameraView[x][y] == PlanetElement.roverEast ||
-            camera.cameraView[x][y] == PlanetElement.roverNorth ||
-            camera.cameraView[x][y] == PlanetElement.roverSouth ||
-            camera.cameraView[x][y] == PlanetElement.roverWest) {
-          Direction direction;
-          switch (camera.cameraView[x][y]) {
-            case PlanetElement.roverEast:
-              direction = Direction.east;
-              break;
-            case PlanetElement.roverNorth:
-              direction = Direction.north;
-              break;
-            case PlanetElement.roverSouth:
-              direction = Direction.south;
-              break;
-            case PlanetElement.roverWest:
-              direction = Direction.west;
-              break;
-            default:
-              direction = Direction.north;
+    return Container(
+      color: Colors.grey[300],
+      child: GridView.builder(
+        itemCount: Config.cameraSize * Config.cameraSize,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: Config.cameraSize,
+        ),
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          int x = index ~/ Config.cameraSize;
+          int y = index % Config.cameraSize;
+          if (camera.cameraView[x][y] == PlanetElement.roverEast ||
+              camera.cameraView[x][y] == PlanetElement.roverNorth ||
+              camera.cameraView[x][y] == PlanetElement.roverSouth ||
+              camera.cameraView[x][y] == PlanetElement.roverWest) {
+            Direction direction;
+            switch (camera.cameraView[x][y]) {
+              case PlanetElement.roverEast:
+                direction = Direction.east;
+                break;
+              case PlanetElement.roverNorth:
+                direction = Direction.north;
+                break;
+              case PlanetElement.roverSouth:
+                direction = Direction.south;
+                break;
+              case PlanetElement.roverWest:
+                direction = Direction.west;
+                break;
+              default:
+                direction = Direction.north;
+            }
+            return RoverTile(
+              direction: direction,
+            );
+          } else if (camera.cameraView[x][y] == PlanetElement.obstacle) {
+            return const ObstacleTile();
+          } else {
+            return const GroundTile();
           }
-          return RoverTile(
-            direction: direction,
-          );
-        } else if (camera.cameraView[x][y] == PlanetElement.obstacle) {
-          return const ObstacleTile();
-        } else {
-          return const GroundTile();
-        }
-      },
+        },
+      ),
     );
   }
 }
