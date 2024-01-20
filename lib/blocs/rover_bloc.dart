@@ -27,12 +27,17 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
   }
 
   /* When the rover starts moving,
-  we set the status to moving and start the timer (on the view) */
+  we set the status to moving and start the timer */
   void _onRoverStartsMoving(RoverStartsMoving event, Emitter<RoverState> emit) {
-    emit(state.copyWith(
-      status: RoverStatus.moving,
-      movements: state.movements,
-    ));
+    if (state.movements.isNotEmpty && state.status == RoverStatus.stopped) {
+      movementTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        add(RoverMoved());
+      });
+      emit(state.copyWith(
+        status: RoverStatus.moving,
+        movements: state.movements,
+      ));
+    }
   }
 
   /* When the rover moves, we remove 
@@ -44,11 +49,7 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
         movements: state.movements.sublist(1),
       ));
     } else {
-      movementTimer?.cancel();
-      emit(state.copyWith(
-        status: RoverStatus.stopped,
-        movements: [],
-      ));
+      add(RoverStopped());
     }
   }
 

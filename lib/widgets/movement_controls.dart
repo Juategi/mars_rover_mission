@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mars_rover_mission/blocs/rover_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,10 +45,6 @@ class MovementControls extends StatelessWidget {
                   ),
                   onPressed: () {
                     context.read<RoverBloc>().add(RoverStartsMoving());
-                    RoverBloc.movementTimer = Timer.periodic(
-                        const Duration(milliseconds: 350), (Timer timer) {
-                      context.read<RoverBloc>().add(RoverMoved());
-                    });
                   },
                 ),
               ),

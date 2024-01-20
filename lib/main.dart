@@ -15,15 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mars Rover Mission',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider<RoverBloc>(
-            create: (BuildContext context) => RoverBloc(),
-          ),
-        ],
+      home: BlocProvider<RoverBloc>(
+        create: (BuildContext context) => RoverBloc(),
         child: const MainScreen(),
       ),
     );

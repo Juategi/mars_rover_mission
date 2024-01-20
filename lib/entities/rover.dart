@@ -25,6 +25,8 @@ class Rover {
     planet.setRoverPosition(position, direction);
   }
 
+  /* This method returns true if the rover moves,
+   or false if it hits an obstacle */
   bool moveRover(RoverMovement movement) {
     switch (movement) {
       case RoverMovement.forward:
