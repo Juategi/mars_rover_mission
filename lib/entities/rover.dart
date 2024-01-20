@@ -90,13 +90,22 @@ class Rover {
       planet.setRoverPosition(position, direction);
       return true;
     } else {
-      print("Obstacle found at $newPosition");
+      /* Rover has hit an obstacle, but we still need to update the map
+      because while the position is be the same, the direction 
+      might be different */
+      planet.removeRoverPosition(position);
+      planet.setRoverPosition(position, direction);
       return false;
     }
   }
 
   bool _isAnObstacle((int, int) newPosition) {
-    print(planet.map[newPosition.$1][newPosition.$2]);
+    if (newPosition.$1 < 0 ||
+        newPosition.$1 >= Config.planetSize ||
+        newPosition.$2 < 0 ||
+        newPosition.$2 >= Config.planetSize) {
+      return true;
+    }
     return planet.map[newPosition.$1][newPosition.$2] == PlanetElement.obstacle;
   }
 }

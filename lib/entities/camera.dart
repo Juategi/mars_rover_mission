@@ -10,6 +10,9 @@ class Camera {
     loadCameraMapFromRoverPosition();
   }
 
+  /* Creates a snapshot of the planet map from the rover's position,
+  so we only render the part of the planet that the rover can see, because
+  of performance reasons. */
   void loadCameraMapFromRoverPosition() {
     cameraView = List.generate(Config.cameraSize, (_) {
       return List.generate(Config.cameraSize, (_) => PlanetElement.ground);

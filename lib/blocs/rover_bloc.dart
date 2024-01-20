@@ -14,6 +14,8 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
     on<RoverStartsMoving>(_onRoverStartsMoving);
   }
 
+  /* When the user presses the send button, 
+  we add the movement to the list of movements */
   void _onRoverAddedMovement(
       RoverAddedMovement event, Emitter<RoverState> emit) {
     if (state.status == RoverStatus.stopped && state.movements.length < 12) {
@@ -24,6 +26,8 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
     }
   }
 
+  /* When the rover starts moving,
+  we set the status to moving and start the timer (on the view) */
   void _onRoverStartsMoving(RoverStartsMoving event, Emitter<RoverState> emit) {
     emit(state.copyWith(
       status: RoverStatus.moving,
@@ -31,6 +35,8 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
     ));
   }
 
+  /* When the rover moves, we remove 
+  the first movement from the list of movements */
   void _onRoverMoved(RoverMoved event, Emitter<RoverState> emit) {
     if (state.movements.isNotEmpty) {
       emit(state.copyWith(
@@ -46,6 +52,8 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
     }
   }
 
+  /* When the rover hits an obstacle, 
+  we stop the rover and clear the movements*/
   void _onRoverStopped(RoverStopped event, Emitter<RoverState> emit) {
     movementTimer?.cancel();
     emit(state.copyWith(

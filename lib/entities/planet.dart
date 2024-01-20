@@ -10,6 +10,7 @@ class Planet {
     _generateMapWithRandomObstacles();
   }
 
+  /* Generates a random map with obstacles */
   void _generateMapWithRandomObstacles() {
     int obstacles = Config.obstacles;
     map = List.generate(Config.planetSize, (_) {
@@ -25,6 +26,8 @@ class Planet {
     }
   }
 
+  /* Given the position and the direction of the rover, we will use
+  different tiles when drawing the map */
   void setRoverPosition((int, int) position, Direction direction) {
     switch (direction) {
       case Direction.north:

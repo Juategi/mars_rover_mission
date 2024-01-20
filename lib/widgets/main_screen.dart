@@ -32,9 +32,23 @@ class _MainScreenState extends State<MainScreen> {
     return BlocBuilder<RoverBloc, RoverState>(builder: (context, state) {
       if (state.status == RoverStatus.moving && state.movements.isNotEmpty) {
         bool hasMoved = rover.moveRover(state.movements[0]);
-        if (hasMoved) {
-          camera.loadCameraMapFromRoverPosition();
-        } else {
+        camera.loadCameraMapFromRoverPosition();
+        if (!hasMoved) {
+          // Rover has hit an obstacle
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: const Text(
+                "Obstacle found!",
+                textAlign: TextAlign.center,
+              ),
+              duration: const Duration(milliseconds: 2000),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.3,
+                horizontal: MediaQuery.of(context).size.width * 0.2,
+              ),
+            ));
+          });
           context.read<RoverBloc>().add(RoverStopped());
         }
       }

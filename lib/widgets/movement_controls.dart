@@ -48,7 +48,7 @@ class MovementControls extends StatelessWidget {
                   onPressed: () {
                     context.read<RoverBloc>().add(RoverStartsMoving());
                     RoverBloc.movementTimer = Timer.periodic(
-                        const Duration(seconds: 1), (Timer timer) {
+                        const Duration(milliseconds: 350), (Timer timer) {
                       context.read<RoverBloc>().add(RoverMoved());
                     });
                   },
