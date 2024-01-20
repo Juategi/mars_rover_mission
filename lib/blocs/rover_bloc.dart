@@ -7,7 +7,7 @@ part 'rover_state.dart';
 
 class RoverBloc extends Bloc<RoverEvent, RoverState> {
   static Timer? movementTimer;
-  RoverBloc() : super(const RoverState()) {
+  RoverBloc() : super(const RoverState(movements: [])) {
     on<RoverMoved>(_onRoverMoved);
     on<RoverStopped>(_onRoverStopped);
     on<RoverAddedMovement>(_onRoverAddedMovement);
@@ -19,7 +19,7 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
     if (state.status == RoverStatus.stopped && state.movements.length < 12) {
       emit(state.copyWith(
         status: RoverStatus.stopped,
-        movements: state.movements + event.movement,
+        movements: [...state.movements, event.movement],
       ));
     }
   }
@@ -35,13 +35,13 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
     if (state.movements.isNotEmpty) {
       emit(state.copyWith(
         status: RoverStatus.moving,
-        movements: state.movements.substring(1),
+        movements: state.movements.sublist(1),
       ));
     } else {
       movementTimer?.cancel();
       emit(state.copyWith(
         status: RoverStatus.stopped,
-        movements: "",
+        movements: [],
       ));
     }
   }
@@ -50,7 +50,7 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
     movementTimer?.cancel();
     emit(state.copyWith(
       status: RoverStatus.stopped,
-      movements: "",
+      movements: [],
     ));
   }
 }

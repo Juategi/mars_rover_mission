@@ -18,7 +18,9 @@ class MovementControls extends StatelessWidget {
             iconSize: 60,
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              context.read<RoverBloc>().add(RoverAddedMovement("L"));
+              context
+                  .read<RoverBloc>()
+                  .add(RoverAddedMovement(RoverMovement.left));
             },
           ),
           const SizedBox(width: 20),
@@ -30,7 +32,9 @@ class MovementControls extends StatelessWidget {
                   iconSize: 60,
                   icon: const Icon(Icons.arrow_upward),
                   onPressed: () {
-                    context.read<RoverBloc>().add(RoverAddedMovement("F"));
+                    context
+                        .read<RoverBloc>()
+                        .add(RoverAddedMovement(RoverMovement.forward));
                   },
                 ),
               ),
@@ -57,7 +61,9 @@ class MovementControls extends StatelessWidget {
             iconSize: 60,
             icon: const Icon(Icons.arrow_forward),
             onPressed: () {
-              context.read<RoverBloc>().add(RoverAddedMovement("R"));
+              context
+                  .read<RoverBloc>()
+                  .add(RoverAddedMovement(RoverMovement.right));
             },
           ),
         ],

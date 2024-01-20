@@ -31,8 +31,12 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<RoverBloc, RoverState>(builder: (context, state) {
       if (state.status == RoverStatus.moving && state.movements.isNotEmpty) {
-        rover.moveRover(state.movements[0]);
-        camera.loadCameraMapFromRoverPosition();
+        bool hasMoved = rover.moveRover(state.movements[0]);
+        if (hasMoved) {
+          camera.loadCameraMapFromRoverPosition();
+        } else {
+          context.read<RoverBloc>().add(RoverStopped());
+        }
       }
       return Scaffold(
         body: Column(
@@ -51,7 +55,7 @@ class _MainScreenState extends State<MainScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 50),
                       child: Text(
-                        state.movements,
+                        state.movements.map((e) => e.toString()).join(" "),
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ),

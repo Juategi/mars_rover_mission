@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:mars_rover_mission/blocs/rover_bloc.dart';
 import 'package:mars_rover_mission/config/config.dart';
 import 'package:mars_rover_mission/entities/planet.dart';
 
@@ -24,85 +25,79 @@ class Rover {
     planet.setRoverPosition(position, direction);
   }
 
-  void moveRover(String movement) {
-    planet.removeRoverPosition(position);
+  bool moveRover(RoverMovement movement) {
     switch (movement) {
-      case "F":
-        _moveRoverForward();
-        break;
-      case "L":
-        _moveRoverLeft();
-        break;
-      case "R":
-        _moveRoverRight();
-        break;
+      case RoverMovement.forward:
+        return _moveRoverForward();
+      case RoverMovement.left:
+        return _moveRoverLeft();
+      case RoverMovement.right:
+        return _moveRoverRight();
     }
-    planet.setRoverPosition(position, direction);
   }
 
-  void _moveRoverForward() {
+  bool _moveRoverForward() {
     switch (direction) {
       case Direction.north:
-        position = (position.$1 - 1, position.$2);
-        break;
+        return _moveToNewPosition((position.$1 - 1, position.$2));
       case Direction.east:
-        position = (position.$1, position.$2 + 1);
-        break;
+        return _moveToNewPosition((position.$1, position.$2 + 1));
       case Direction.south:
-        position = (position.$1 + 1, position.$2);
-        break;
+        return _moveToNewPosition((position.$1 + 1, position.$2));
       case Direction.west:
-        position = (position.$1, position.$2 - 1);
-        break;
-      default:
-        break;
+        return _moveToNewPosition((position.$1, position.$2 - 1));
     }
   }
 
-  void _moveRoverLeft() {
+  bool _moveRoverLeft() {
     switch (direction) {
       case Direction.north:
         direction = Direction.west;
-        position = (position.$1, position.$2 - 1);
-        break;
+        return _moveToNewPosition((position.$1, position.$2 - 1));
       case Direction.east:
         direction = Direction.north;
-        position = (position.$1 - 1, position.$2);
-        break;
+        return _moveToNewPosition((position.$1 - 1, position.$2));
       case Direction.south:
         direction = Direction.east;
-        position = (position.$1, position.$2 + 1);
-        break;
+        return _moveToNewPosition((position.$1, position.$2 + 1));
       case Direction.west:
         direction = Direction.south;
-        position = (position.$1 + 1, position.$2);
-        break;
-      default:
-        break;
+        return _moveToNewPosition((position.$1 + 1, position.$2));
     }
   }
 
-  void _moveRoverRight() {
+  bool _moveRoverRight() {
     switch (direction) {
       case Direction.north:
         direction = Direction.east;
-        position = (position.$1, position.$2 + 1);
-        break;
+        return _moveToNewPosition((position.$1, position.$2 + 1));
       case Direction.east:
         direction = Direction.south;
-        position = (position.$1 + 1, position.$2);
-        break;
+        return _moveToNewPosition((position.$1 + 1, position.$2));
       case Direction.south:
         direction = Direction.west;
-        position = (position.$1, position.$2 - 1);
-        break;
+        return _moveToNewPosition((position.$1, position.$2 - 1));
       case Direction.west:
         direction = Direction.north;
-        position = (position.$1 - 1, position.$2);
-        break;
-      default:
-        break;
+        return _moveToNewPosition((position.$1 - 1, position.$2));
     }
+  }
+
+  bool _moveToNewPosition((int, int) newPosition) {
+    if (!_isAnObstacle(newPosition)) {
+      planet.removeRoverPosition(position);
+      position = newPosition;
+      planet.setRoverPosition(position, direction);
+      return true;
+    } else {
+      print("Obstacle found at $newPosition");
+      return false;
+    }
+  }
+
+  bool _isAnObstacle((int, int) newPosition) {
+    print(planet.map[newPosition.$1][newPosition.$2]);
+    return planet.map[newPosition.$1][newPosition.$2] == PlanetElement.obstacle;
   }
 }
 

@@ -8,7 +8,7 @@ sealed class RoverEvent extends Equatable {
 final class RoverAddedMovement extends RoverEvent {
   RoverAddedMovement(this.movement);
 
-  final String movement;
+  final RoverMovement movement;
 
   @override
   List<Object> get props => [movement];
