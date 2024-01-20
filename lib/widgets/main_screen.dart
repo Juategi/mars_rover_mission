@@ -31,7 +31,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<RoverBloc, RoverState>(builder: (context, state) {
       if (state.status == RoverStatus.moving && state.movements.isNotEmpty) {
-        camera.moveRover(state.movements[0]);
+        rover.moveRover(state.movements[0]);
+        camera.loadCameraMapFromRoverPosition();
       }
       return Scaffold(
         body: Column(
