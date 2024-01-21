@@ -10,12 +10,14 @@ class InitialMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: Styles.background,
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
+              const SizedBox(height: 10),
               const Text(
                 "MARS ROVER",
                 style: Styles.textStyle,

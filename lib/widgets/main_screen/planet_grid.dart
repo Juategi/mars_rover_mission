@@ -26,7 +26,7 @@ class PlanetGrid extends StatelessWidget {
         color: Colors.transparent,
         child: GridView.builder(
           itemCount: Config.cameraSize * Config.cameraSize,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: Config.cameraSize,
           ),
           physics: const NeverScrollableScrollPhysics(),
