@@ -64,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                             bottom: 50, left: 20, right: 20),
                         child: Text(
                           state.movements.map((e) => e.toString()).join(""),
-                          style: Styles.title,
+                          style: Styles.textStyle,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),

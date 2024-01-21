@@ -29,7 +29,7 @@ class _DirectionSelectorState extends State<DirectionSelector> {
               },
               child: const Text(
                 "N",
-                style: Styles.title,
+                style: Styles.textStyle,
               ),
             ),
           ),
@@ -42,7 +42,7 @@ class _DirectionSelectorState extends State<DirectionSelector> {
               },
               child: const Text(
                 "E",
-                style: Styles.title,
+                style: Styles.textStyle,
               ),
             ),
           ),
@@ -55,7 +55,7 @@ class _DirectionSelectorState extends State<DirectionSelector> {
               },
               child: const Text(
                 "S",
-                style: Styles.title,
+                style: Styles.textStyle,
               ),
             ),
           ),
@@ -68,7 +68,7 @@ class _DirectionSelectorState extends State<DirectionSelector> {
               },
               child: const Text(
                 "W",
-                style: Styles.title,
+                style: Styles.textStyle,
               ),
             ),
           ),

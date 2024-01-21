@@ -44,7 +44,7 @@ class MovementControls extends StatelessWidget {
                 child: TextButton(
                   child: const Text(
                     "SEND",
-                    style: Styles.title,
+                    style: Styles.textStyle,
                   ),
                   onPressed: () {
                     context.read<RoverBloc>().add(RoverStartsMoving());

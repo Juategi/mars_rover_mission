@@ -18,11 +18,11 @@ class InitialMenu extends StatelessWidget {
             children: [
               const Text(
                 "MARS ROVER",
-                style: Styles.title,
+                style: Styles.textStyle,
               ),
               const Text(
                 "MISSION",
-                style: Styles.title,
+                style: Styles.textStyle,
               ),
               const SizedBox(height: 32),
               TextField(
@@ -31,18 +31,8 @@ class InitialMenu extends StatelessWidget {
                   FilteringTextInputFormatter.digitsOnly
                 ],
                 style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
+                decoration: Styles.inputDecoration.copyWith(
                   labelText: 'X Position',
-                  hintText: 'Enter a number between 0 and 199',
-                  border: InputBorder.none, // Remove underline
-                  labelStyle: TextStyle(
-                      color: Colors.white), // Set label text color to white
-                  hintStyle: TextStyle(
-                      color: Colors.white), // Set hint text color to white
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.white), // Set underline color to white
-                  ),
                 ),
                 onChanged: (value) {
                   InitialMenuController.posX = value;
@@ -55,18 +45,8 @@ class InitialMenu extends StatelessWidget {
                   FilteringTextInputFormatter.digitsOnly
                 ],
                 style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
+                decoration: Styles.inputDecoration.copyWith(
                   labelText: 'Y Position',
-                  hintText: 'Enter a number between 0 and 199',
-                  border: InputBorder.none, // Remove underline
-                  labelStyle: TextStyle(
-                      color: Colors.white), // Set label text color to white
-                  hintStyle: TextStyle(
-                      color: Colors.white), // Set hint text color to white
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.white), // Set underline color to white
-                  ),
                 ),
                 onChanged: (value) {
                   InitialMenuController.posY = value;
@@ -75,7 +55,7 @@ class InitialMenu extends StatelessWidget {
               const SizedBox(height: 50),
               const Text(
                 "Select Direction",
-                style: Styles.title,
+                style: Styles.textStyle,
               ),
               const SizedBox(height: 30),
               const DirectionSelector(),
