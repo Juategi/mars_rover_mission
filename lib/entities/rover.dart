@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:mars_rover_mission/blocs/rover_bloc.dart';
 import 'package:mars_rover_mission/config/config.dart';
 import 'package:mars_rover_mission/entities/planet.dart';
+import 'package:mars_rover_mission/widgets/initial_menu/initial_menu_controller.dart';
 
 class Rover {
   late Planet planet;
@@ -10,7 +11,16 @@ class Rover {
   late Direction direction;
 
   Rover({required this.planet}) {
-    _deployRoverOnRandomPosition();
+    _deployRoverOnSelectedPosition();
+  }
+
+  void _deployRoverOnSelectedPosition() {
+    position = (
+      int.parse(InitialMenuController.posX),
+      int.parse(InitialMenuController.posY)
+    );
+    direction = InitialMenuController.direction;
+    planet.setRoverPosition(position, direction);
   }
 
   void _deployRoverOnRandomPosition() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mars_rover_mission/blocs/rover_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mars_rover_mission/config/styles.dart';
 
 class MovementControls extends StatelessWidget {
   const MovementControls({super.key});
@@ -15,6 +16,7 @@ class MovementControls extends StatelessWidget {
           IconButton(
             iconSize: 60,
             icon: const Icon(Icons.arrow_back),
+            color: Colors.white,
             onPressed: () {
               context
                   .read<RoverBloc>()
@@ -29,6 +31,7 @@ class MovementControls extends StatelessWidget {
                 child: IconButton(
                   iconSize: 60,
                   icon: const Icon(Icons.arrow_upward),
+                  color: Colors.white,
                   onPressed: () {
                     context
                         .read<RoverBloc>()
@@ -39,9 +42,9 @@ class MovementControls extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: TextButton(
-                  child: Text(
+                  child: const Text(
                     "SEND",
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Styles.title,
                   ),
                   onPressed: () {
                     context.read<RoverBloc>().add(RoverStartsMoving());
@@ -54,6 +57,7 @@ class MovementControls extends StatelessWidget {
           IconButton(
             iconSize: 60,
             icon: const Icon(Icons.arrow_forward),
+            color: Colors.white,
             onPressed: () {
               context
                   .read<RoverBloc>()

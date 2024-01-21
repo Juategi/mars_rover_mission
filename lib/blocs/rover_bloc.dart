@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:mars_rover_mission/config/config.dart';
 part 'rover_event.dart';
 part 'rover_state.dart';
 
@@ -18,7 +19,8 @@ class RoverBloc extends Bloc<RoverEvent, RoverState> {
   we add the movement to the list of movements */
   void _onRoverAddedMovement(
       RoverAddedMovement event, Emitter<RoverState> emit) {
-    if (state.status == RoverStatus.stopped && state.movements.length < 12) {
+    if (state.status == RoverStatus.stopped &&
+        state.movements.length < Config.maxMovements) {
       emit(state.copyWith(
         status: RoverStatus.stopped,
         movements: [...state.movements, event.movement],
