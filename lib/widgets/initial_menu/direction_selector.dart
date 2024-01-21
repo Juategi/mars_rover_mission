@@ -39,7 +39,7 @@ class DirectionSelector extends StatelessWidget {
               ),
               const Compass(),
               const SizedBox(
-                height: 15,
+                height: 17,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20),
@@ -56,7 +56,7 @@ class DirectionSelector extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            width: 10,
+            width: 13,
           ),
           TextButton(
             onPressed: () {
