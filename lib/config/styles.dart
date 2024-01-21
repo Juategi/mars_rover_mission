@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mars_rover_mission/config/config.dart';
 
 class Styles {
   static const TextStyle textStyle = TextStyle(
@@ -15,7 +16,7 @@ class Styles {
   );
 
   static const InputDecoration inputDecoration = InputDecoration(
-    hintText: 'Enter a number between 0 and 199',
+    hintText: 'Number 0 - ${Config.planetSize - 1}',
     border: InputBorder.none,
     labelStyle: TextStyle(color: Colors.white),
     hintStyle: TextStyle(color: Colors.white),

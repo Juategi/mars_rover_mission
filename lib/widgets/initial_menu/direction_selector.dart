@@ -1,40 +1,47 @@
 import 'package:flutter/material.dart';
-
-import 'package:mars_rover_mission/config/styles.dart';
 import 'package:mars_rover_mission/entities/rover.dart';
 import 'package:mars_rover_mission/widgets/initial_menu/compass.dart';
 import 'package:mars_rover_mission/widgets/initial_menu/initial_menu_controller.dart';
+import 'package:mars_rover_mission/widgets/initial_menu/selector_button.dart';
 
-class DirectionSelector extends StatelessWidget {
+class DirectionSelector extends StatefulWidget {
   const DirectionSelector({Key? key}) : super(key: key);
 
+  @override
+  State<DirectionSelector> createState() => _DirectionSelectorState();
+}
+
+class _DirectionSelectorState extends State<DirectionSelector> {
+  String selectedPoint = "";
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 282,
       child: Row(
         children: [
-          TextButton(
-            onPressed: () {
-              InitialMenuController.deployRover(context, Direction.west);
+          SelectorButton(
+            onPressed: () => {
+              setState(() {
+                selectedPoint = "W";
+                InitialMenuController.direction = Direction.west;
+              })
             },
-            child: const Text(
-              "W",
-              style: Styles.textStyle,
-            ),
+            cardinalPoint: "W",
+            selectedPoint: selectedPoint,
           ),
           Column(
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: TextButton(
-                  onPressed: () {
-                    InitialMenuController.deployRover(context, Direction.north);
+                child: SelectorButton(
+                  onPressed: () => {
+                    setState(() {
+                      selectedPoint = "N";
+                      InitialMenuController.direction = Direction.north;
+                    })
                   },
-                  child: const Text(
-                    "N",
-                    style: Styles.textStyle,
-                  ),
+                  cardinalPoint: "N",
+                  selectedPoint: selectedPoint,
                 ),
               ),
               const Compass(),
@@ -43,29 +50,31 @@ class DirectionSelector extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: TextButton(
-                  onPressed: () {
-                    InitialMenuController.deployRover(context, Direction.south);
+                child: SelectorButton(
+                  onPressed: () => {
+                    setState(() {
+                      selectedPoint = "S";
+                      InitialMenuController.direction = Direction.south;
+                    })
                   },
-                  child: const Text(
-                    "S",
-                    style: Styles.textStyle,
-                  ),
+                  cardinalPoint: "S",
+                  selectedPoint: selectedPoint,
                 ),
               ),
             ],
           ),
           const SizedBox(
-            width: 13,
+            width: 16,
           ),
-          TextButton(
-            onPressed: () {
-              InitialMenuController.deployRover(context, Direction.east);
+          SelectorButton(
+            onPressed: () => {
+              setState(() {
+                selectedPoint = "E";
+                InitialMenuController.direction = Direction.east;
+              })
             },
-            child: const Text(
-              "E",
-              style: Styles.textStyle,
-            ),
+            cardinalPoint: "E",
+            selectedPoint: selectedPoint,
           ),
         ],
       ),

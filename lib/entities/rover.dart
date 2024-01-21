@@ -16,10 +16,10 @@ class Rover {
 
   void _deployRoverOnSelectedPosition() {
     position = (
-      int.parse(InitialMenuController.posX),
-      int.parse(InitialMenuController.posY)
+      int.parse(InitialMenuController.posY),
+      int.parse(InitialMenuController.posX)
     );
-    direction = InitialMenuController.direction;
+    direction = InitialMenuController.direction ?? Direction.north;
     planet.setRoverPosition(position, direction);
   }
 
