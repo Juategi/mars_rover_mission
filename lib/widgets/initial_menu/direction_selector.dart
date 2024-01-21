@@ -11,7 +11,7 @@ class DirectionSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 280,
+      width: 282,
       child: Row(
         children: [
           TextButton(

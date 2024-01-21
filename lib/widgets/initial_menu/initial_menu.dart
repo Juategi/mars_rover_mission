@@ -14,7 +14,7 @@ class InitialMenu extends StatelessWidget {
       body: Container(
         decoration: Styles.background,
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(18),
           child: Column(
             children: [
               const SizedBox(height: 10),
