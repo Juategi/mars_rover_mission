@@ -8,6 +8,7 @@ class GroundTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       groundImagePath,
+      fit: BoxFit.fill,
     );
   }
 }

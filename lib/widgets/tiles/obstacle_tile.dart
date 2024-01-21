@@ -8,6 +8,7 @@ class ObstacleTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       obstacleImagePath,
+      fit: BoxFit.fill,
     );
   }
 }

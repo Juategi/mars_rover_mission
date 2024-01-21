@@ -14,15 +14,19 @@ class RoverTile extends StatelessWidget {
     return switch (direction) {
       Direction.east => Image.asset(
           roverEastImagePath,
+          fit: BoxFit.fill,
         ),
       Direction.north => Image.asset(
           roverNorthImagePath,
+          fit: BoxFit.fill,
         ),
       Direction.south => Image.asset(
           roverSouthImagePath,
+          fit: BoxFit.fill,
         ),
       Direction.west => Image.asset(
           roverWestImagePath,
+          fit: BoxFit.fill,
         ),
     };
   }
