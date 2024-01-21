@@ -20,7 +20,7 @@ class InitialMenuController {
         y > Config.planetSize - 1 ||
         direction == null) {
       MySnackBar.showSnackBar(context, "Invalid coordinates or direction",
-          heightOffset: 0.1);
+          heightOffset: 0.0);
       return;
     }
     Navigator.pushReplacement(

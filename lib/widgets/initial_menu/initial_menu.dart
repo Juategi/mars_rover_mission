@@ -15,7 +15,7 @@ class InitialMenu extends StatelessWidget {
         width: double.maxFinite,
         decoration: Styles.background,
         child: Padding(
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
               const SizedBox(height: 10),
@@ -27,7 +27,7 @@ class InitialMenu extends StatelessWidget {
                 "MISSION",
                 style: Styles.textStyle,
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 22),
               SizedBox(
                 width: 180,
                 child: TextField(
@@ -61,14 +61,14 @@ class InitialMenu extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 50),
-              const Text(
+              const SizedBox(height: 30),
+              Text(
                 "Select Direction",
-                style: Styles.textStyle,
+                style: Styles.textStyle.copyWith(fontSize: 18),
               ),
               const SizedBox(height: 20),
               const DirectionSelector(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
                   InitialMenuController.deployRover(context);

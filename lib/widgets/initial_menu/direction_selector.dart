@@ -15,7 +15,7 @@ class _DirectionSelectorState extends State<DirectionSelector> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 282,
+      width: 295,
       child: Row(
         children: [
           SelectorButton(
