@@ -122,4 +122,23 @@ class Rover {
   }
 }
 
-enum Direction { north, east, south, west }
+enum Direction {
+  north,
+  east,
+  south,
+  west;
+
+  @override
+  String toString() {
+    switch (this) {
+      case Direction.north:
+        return 'N';
+      case Direction.east:
+        return 'E';
+      case Direction.south:
+        return 'S';
+      case Direction.west:
+        return 'W';
+    }
+  }
+}

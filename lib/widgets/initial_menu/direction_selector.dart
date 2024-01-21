@@ -12,7 +12,6 @@ class DirectionSelector extends StatefulWidget {
 }
 
 class _DirectionSelectorState extends State<DirectionSelector> {
-  String selectedPoint = "";
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,12 +21,10 @@ class _DirectionSelectorState extends State<DirectionSelector> {
           SelectorButton(
             onPressed: () => {
               setState(() {
-                selectedPoint = "W";
                 InitialMenuController.direction = Direction.west;
               })
             },
-            cardinalPoint: "W",
-            selectedPoint: selectedPoint,
+            cardinalPoint: Direction.west,
           ),
           Column(
             children: [
@@ -36,12 +33,10 @@ class _DirectionSelectorState extends State<DirectionSelector> {
                 child: SelectorButton(
                   onPressed: () => {
                     setState(() {
-                      selectedPoint = "N";
                       InitialMenuController.direction = Direction.north;
                     })
                   },
-                  cardinalPoint: "N",
-                  selectedPoint: selectedPoint,
+                  cardinalPoint: Direction.north,
                 ),
               ),
               const Compass(),
@@ -53,12 +48,10 @@ class _DirectionSelectorState extends State<DirectionSelector> {
                 child: SelectorButton(
                   onPressed: () => {
                     setState(() {
-                      selectedPoint = "S";
                       InitialMenuController.direction = Direction.south;
                     })
                   },
-                  cardinalPoint: "S",
-                  selectedPoint: selectedPoint,
+                  cardinalPoint: Direction.south,
                 ),
               ),
             ],
@@ -69,12 +62,10 @@ class _DirectionSelectorState extends State<DirectionSelector> {
           SelectorButton(
             onPressed: () => {
               setState(() {
-                selectedPoint = "E";
                 InitialMenuController.direction = Direction.east;
               })
             },
-            cardinalPoint: "E",
-            selectedPoint: selectedPoint,
+            cardinalPoint: Direction.east,
           ),
         ],
       ),
