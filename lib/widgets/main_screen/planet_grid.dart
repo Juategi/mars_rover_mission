@@ -33,34 +33,28 @@ class PlanetGrid extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             int x = index ~/ Config.cameraSize;
             int y = index % Config.cameraSize;
-            if (camera.cameraView[x][y] == PlanetElement.roverEast ||
-                camera.cameraView[x][y] == PlanetElement.roverNorth ||
-                camera.cameraView[x][y] == PlanetElement.roverSouth ||
-                camera.cameraView[x][y] == PlanetElement.roverWest) {
-              Direction direction;
-              switch (camera.cameraView[x][y]) {
-                case PlanetElement.roverEast:
-                  direction = Direction.east;
-                  break;
-                case PlanetElement.roverNorth:
-                  direction = Direction.north;
-                  break;
-                case PlanetElement.roverSouth:
-                  direction = Direction.south;
-                  break;
-                case PlanetElement.roverWest:
-                  direction = Direction.west;
-                  break;
-                default:
-                  direction = Direction.north;
-              }
-              return RoverTile(
-                direction: direction,
-              );
-            } else if (camera.cameraView[x][y] == PlanetElement.obstacle) {
-              return const ObstacleTile();
-            } else {
-              return const GroundTile();
+            PlanetElement element = camera.cameraView[x][y];
+            switch (element) {
+              case PlanetElement.roverEast:
+                return const RoverTile(
+                  direction: Direction.east,
+                );
+              case PlanetElement.roverNorth:
+                return const RoverTile(
+                  direction: Direction.north,
+                );
+              case PlanetElement.roverSouth:
+                return const RoverTile(
+                  direction: Direction.south,
+                );
+              case PlanetElement.roverWest:
+                return const RoverTile(
+                  direction: Direction.west,
+                );
+              case PlanetElement.obstacle:
+                return const ObstacleTile();
+              default:
+                return const GroundTile();
             }
           },
         ),
